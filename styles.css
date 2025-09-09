@@ -1,0 +1,86 @@
+/* Общие стили */
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: #0d0d0d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+}
+
+/* Стили кнопок */
+.btn {
+  padding: 15px 40px;  /* Визуальный размер прежний */
+  font-size: 16px;
+  border: 2px solid;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  position: relative;  /* Нужно для позиционирования псевдоэлемента */
+  transition: color 0.3s ease;
+  border-radius: 6px;
+  box-shadow: none;
+  /* Прозрачный квадрат для увеличения hitbox и раннего hover */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30px;     /* Расширение вверх */
+    left: -30px;    /* Расширение влево */
+    right: -30px;   /* Расширение вправо */
+    bottom: -30px;  /* Расширение вниз */
+    background: transparent;  /* Прозрачный */
+    border-radius: 36px;  /* Для плавных углов */
+    /* z-index: -1; УБРАЛ, чтобы hover срабатывал на квадрате */
+  }
+}
+
+/* Синий */
+.btn.blue {
+  color: #4fc3f7;
+  border-color: #4fc3f7;
+}
+
+.btn.blue:hover {
+  color: #fff;
+  box-shadow:
+    0 0 8px #4fc3f7,
+    0 0 20px #4fc3f7,
+    0 0 40px #4fc3f7;
+  transition: box-shadow 0.6s ease, color 0.3s ease;
+}
+
+/* Розовый */
+.btn.pink {
+  color: #e91e63;
+  border-color: #e91e63;
+}
+
+.btn.pink:hover {
+  color: #fff;
+  box-shadow:
+    0 0 10px #e91e63,
+    0 0 30px #e91e63,
+    0 0 60px #e91e63;
+  transition: box-shadow 0.6s ease, color 0.3s ease;
+}
+
+/* Зеленый */
+.btn.green {
+  color: #cddc39;
+  border-color: #cddc39;
+}
+
+.btn.green:hover {
+  color: #fff;
+  box-shadow:
+    0 0 8px #cddc39,
+    0 0 22px #cddc39,
+    0 0 45px #cddc39;
+  transition: box-shadow 0.6s ease, color 0.3s ease;
+}
