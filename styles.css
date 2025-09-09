@@ -6,42 +6,83 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
-/* Оверлеи для градиентного фона */
+/* Основные оверлеи */
 .bg-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  opacity: 0;
+  opacity: 0.6;
   transition: opacity 1.2s ease;
   z-index: -1;
-  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-size: 400% 400%;
   border-radius: 0;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  will-change: background-position;
 }
 
 .bg-overlay.blue {
-  background-image: linear-gradient(-45deg, #0a152b, #143a70, #1b4ea1);
+  background-image:
+    radial-gradient(30% 30% at 15% 35%, #1a3a60cc, transparent 85%),
+    radial-gradient(20% 20% at 65% 45%, #1061a3cc, transparent 85%),
+    radial-gradient(40% 40% at 50% 80%, #0c4b85bb, transparent 85%);
 }
 
 .bg-overlay.pink {
-  background-image: linear-gradient(60deg, #2b0a1f, #720c42, #a01464);
+  background-image:
+    radial-gradient(30% 30% at 18% 30%, #531333cc, transparent 85%),
+    radial-gradient(20% 20% at 70% 40%, #9d0e54cc, transparent 85%),
+    radial-gradient(40% 40% at 50% 78%, #6d1243b3, transparent 85%);
 }
 
 .bg-overlay.green {
-  background-image: linear-gradient(120deg, #22330b, #526a15, #8aa621);
+  background-image:
+    radial-gradient(30% 30% at 15% 25%, #4a5610cc, transparent 85%),
+    radial-gradient(20% 20% at 70% 50%, #8ba619cc, transparent 85%),
+    radial-gradient(40% 40% at 50% 75%, #637516b3, transparent 85%);
 }
 
-/* Стили кнопок */
+/* Стиль шариков */
+.bg-ball {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0.8;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  filter: blur(40px);
+  mix-blend-mode: screen;
+  transform: scale(0.3);
+  will-change: transform, opacity, filter;
+}
+
+/* Синие шарики */
+.blue-ball {
+  background: radial-gradient(circle, #4fc3f7aa, transparent);
+}
+
+/* Розовые шарики */
+.pink-ball {
+  background: radial-gradient(circle, #e91e63aa, transparent);
+}
+
+/* Зелёные шарики */
+.green-ball {
+  background: radial-gradient(circle, #cddc39aa, transparent);
+}
+
+/* Кнопки */
 .container {
   display: flex;
   gap: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 .btn {
@@ -52,7 +93,7 @@ body {
   color: inherit;
   cursor: pointer;
   position: relative;
-  transition: color 0.2s ease; /* ускорена */
+  transition: color 0.2s ease;
   border-radius: 6px;
   box-shadow: none;
 }
@@ -60,52 +101,28 @@ body {
 .btn::before {
   content: '';
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
+  top: -30px; left: -30px; right: -30px; bottom: -30px;
   background: transparent;
   border-radius: 36px;
 }
 
-.btn.blue {
-  color: #4fc3f7;
-  border-color: #4fc3f7;
-}
-
+.btn.blue { color: #4fc3f7; border-color: #4fc3f7; }
 .btn.blue:hover {
   color: #fff;
-  box-shadow:
-    0 0 8px #4fc3f7,
-    0 0 20px #4fc3f7,
-    0 0 40px #4fc3f7;
-  transition: box-shadow 0.3s ease, color 0.2s ease; /* ускорена */
+  box-shadow: 0 0 8px #4fc3f7, 0 0 20px #4fc3f7, 0 0 40px #4fc3f7;
+  transition: box-shadow 0.3s ease, color 0.2s ease;
 }
 
-.btn.pink {
-  color: #e91e63;
-  border-color: #e91e63;
-}
-
+.btn.pink { color: #e91e63; border-color: #e91e63; }
 .btn.pink:hover {
   color: #fff;
-  box-shadow:
-    0 0 10px #e91e63,
-    0 0 30px #e91e63,
-    0 0 60px #e91e63;
-  transition: box-shadow 0.3s ease, color 0.2s ease; /* ускорена */
+  box-shadow: 0 0 10px #e91e63, 0 0 30px #e91e63, 0 0 60px #e91e63;
+  transition: box-shadow 0.3s ease, color 0.2s ease;
 }
 
-.btn.green {
-  color: #cddc39;
-  border-color: #cddc39;
-}
-
+.btn.green { color: #cddc39; border-color: #cddc39; }
 .btn.green:hover {
   color: #fff;
-  box-shadow:
-    0 0 8px #cddc39,
-    0 0 22px #cddc39,
-    0 0 45px #cddc39;
-  transition: box-shadow 0.3s ease, color 0.2s ease; /* ускорена */
+  box-shadow: 0 0 8px #cddc39, 0 0 22px #cddc39, 0 0 45px #cddc39;
+  transition: box-shadow 0.3s ease, color 0.2s ease;
 }
