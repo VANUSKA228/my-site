@@ -13,35 +13,55 @@ body {
 /* Оверлеи для градиентного фона */
 .bg-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: -30vmax;
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.2s ease;
-  z-index: -1;
-  background-size: cover;
+  z-index: 0;
+  background-size: 220% 220%;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: 0% 50%;
   border-radius: 0;
+  filter: blur(44px) saturate(1.15);
+  will-change: transform, opacity, background-position;
+  transform-origin: center;
+  transform: translate3d(0, 0, 0) scale(1.15);
+  animation: bg-drift 22s ease-in-out infinite;
 }
 
 .bg-overlay.blue {
-  background-image: linear-gradient(-45deg, #0a152b, #143a70, #1b4ea1);
+  background-image:
+    radial-gradient(closest-side at 18% 28%, rgba(79, 195, 247, 0.55), rgba(79, 195, 247, 0) 62%),
+    radial-gradient(closest-side at 78% 34%, rgba(27, 78, 161, 0.50), rgba(27, 78, 161, 0) 64%),
+    radial-gradient(closest-side at 46% 82%, rgba(20, 58, 112, 0.58), rgba(20, 58, 112, 0) 70%),
+    linear-gradient(135deg, #050913 0%, #0a152b 45%, #070f1f 100%);
+  animation-duration: 24s;
 }
 
 .bg-overlay.pink {
-  background-image: linear-gradient(60deg, #2b0a1f, #720c42, #a01464);
+  background-image:
+    radial-gradient(closest-side at 22% 30%, rgba(233, 30, 99, 0.52), rgba(233, 30, 99, 0) 62%),
+    radial-gradient(closest-side at 82% 40%, rgba(160, 20, 100, 0.52), rgba(160, 20, 100, 0) 66%),
+    radial-gradient(closest-side at 52% 84%, rgba(114, 12, 66, 0.60), rgba(114, 12, 66, 0) 72%),
+    linear-gradient(135deg, #12050d 0%, #2b0a1f 45%, #0f0409 100%);
+  animation-duration: 21s;
 }
 
 .bg-overlay.green {
-  background-image: linear-gradient(120deg, #22330b, #526a15, #8aa621);
+  background-image:
+    radial-gradient(closest-side at 18% 32%, rgba(205, 220, 57, 0.48), rgba(205, 220, 57, 0) 62%),
+    radial-gradient(closest-side at 80% 36%, rgba(138, 166, 33, 0.52), rgba(138, 166, 33, 0) 66%),
+    radial-gradient(closest-side at 52% 86%, rgba(82, 106, 21, 0.62), rgba(82, 106, 21, 0) 72%),
+    linear-gradient(135deg, #0a0f05 0%, #22330b 45%, #070b04 100%);
+  animation-duration: 26s;
 }
 
 /* Стили кнопок */
 .container {
   display: flex;
   gap: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .btn {
@@ -108,4 +128,26 @@ body {
     0 0 22px #cddc39,
     0 0 45px #cddc39;
   transition: box-shadow 0.3s ease, color 0.2s ease; /* ускорена */
+}
+
+@keyframes bg-drift {
+  0% {
+    background-position: 0% 50%;
+    transform: translate3d(-2%, -1%, 0) scale(1.18) rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: translate3d(2%, 1%, 0) scale(1.22) rotate(8deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: translate3d(-1%, 2%, 0) scale(1.18) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-overlay {
+    animation: none;
+    transform: translate3d(0, 0, 0) scale(1.15);
+  }
 }
